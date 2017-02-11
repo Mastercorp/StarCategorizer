@@ -1,5 +1,5 @@
 # StarCategorizer
-Add all genres tags from the steamstore to your gamelibrary
+Add all genres tags from the steamstore to your gamelibrary  
 (all custom tags are first deleted, only favorites are saved)
 
 ##What you need
@@ -17,7 +17,7 @@ your sharedconfig.vdf
 
 #HowTo
 
-You have to change steamapikey and steam64id on line 48 and 49 to your own values!
+You have to change steamapikey and steam64id on line 48 and 49 to your own values!  
 Make sure they are inside the single quotes : 'yourkey'   
  
 download categorizer.py and save it in a directory.  
