@@ -22,16 +22,16 @@ Make sure they are inside the single quotes : 'yourkey'
  
 download categorizer.py and save it in a directory.  
 Copy the sharedconfig.vdf in the same folder as categorizer.py  
-(you can find sharedconfig.vdf in \Steam\userdata\youruserid\7\remote\sharedconfig.vdf  
+(you can find sharedconfig.vdf in \Steam\userdata\youruserid\7\remote\sharedconfig.vdf)  
 
 start the programm in your cmd with: python categorizer.py  
-All processed appid are printed in the cmd.  
+All processed appids are printed in the cmd.  
 If you see "all gamefiles updated", you can close the cmd.  
 (To avoid HTTP errors for flooding the server, every apicall waits for 1 second.  
 Therefore, updating 600 games takes at least 600 seconds (10 minutes ))  
 
-Close steam first.  
-Now rename sharedconfig.vdf in your steam folder to sharedconfig_back.vdf ( as backup if something goes wrong ).  
+After the program is finished, make sure steam is closed.  
+Now rename sharedconfig.vdf in your steam folder to sharedconfig_back.vdf (as backup if something goes wrong).  
 Copy the new sharedconfig.vdf from the directory folder to the steam folder and your done.  
 Start steam and enjoy the new categories ;)  
 CARE: All custom categories are deleted. Only your favorites are saved!  
