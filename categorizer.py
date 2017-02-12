@@ -48,7 +48,9 @@ def handle_start():
         global alive
         global gameTimer
         global startButton
+        global cancelButton
         startButton.config(state='disabled')
+        cancelButton.config(state='normal')
         gameTimer = 1
         alive = True
         while alive:
@@ -96,11 +98,13 @@ def handle_start():
                             rightLabel.configure(text='wrong key or id')
                             alive = False
                             startButton.config(state='normal')
+                            cancelButton.config(state='disabled')
                             break
                         else:
                             rightLabel.configure(text='http error')
                             alive = False
                             startButton.config(state='normal')
+                            cancelButton.config(state='disabled')
                             break
 
                     html = response.read()
@@ -164,7 +168,13 @@ def handle_start():
                         rightLabel.configure(text='finished')
                         alive = False
                     else:
-                        rightLabel.configure(text='method stopped')
+                        rightLabel.configure(text='Backup restored')
+                        with open('sharedconfig.vdf.bak', 'r') as F:
+                            backup = F.read()
+                            with open('sharedconfig.vdf', 'w') as B:
+                                B.write(backup)
+
+
                         alive = False
                 else:
                     rightLabel.configure(text='no sharedconfig.vdf found')
@@ -174,6 +184,7 @@ def handle_start():
                 alive = False
             if not alive:
                 startButton.config(state='normal')
+                cancelButton.config(state='disabled')
                 break
     leftLabel.configure(text='')
     rightLabel.configure(text='')
@@ -202,7 +213,8 @@ e2.grid(row=1, column=1)
 Tkinter.Button(root, text='Quit', command=quit_categorizer).grid(row=3, column=0)
 startButton = Tkinter.Button(root, text='Start', command=handle_start, state='normal')
 startButton.grid(row=3, column=2)
-Tkinter.Button(root, text='Cancel', command=stop_thread).grid(row=3, column=1)
+cancelButton = Tkinter.Button(root, text='Cancel', command=stop_thread, state='disabled')
+cancelButton.grid(row=3, column=1)
 gameTimer = 1
 alive = True
 root.mainloop()
