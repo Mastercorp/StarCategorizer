@@ -24,7 +24,7 @@ Start the exe, put in your Steam API key and STEAM64ID and press Start.
 A backup of your sharedconfig.vdf is automatically made.  
 
 Start: beginn with stripping your sharedconfig.vdf and adding categorys to your games in the library.  
-Cancel: Quit the current connection. (Changes to your sharedconfig.vdf are still saved)  
+Cancel: cancel the connection and revert any changes made.
 Quit: exits the programm.  
 
 
