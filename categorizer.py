@@ -173,9 +173,34 @@ def handle_start():
                                             descript = str(description['description'])
                                             id = str(description['id'])
                                             beginvdf += '\t\t\t\t\t\t\t"' + id + '"\t\t"' + descript + '"\n'
+                                            if len(categ) > 0:
+                                                beginvdf += categ
+                                                categ = ""
                                             names = beginvdf + lastinvdf
                                 with open('sharedconfig.vdf', 'w') as F:
                                     F.write(names)
+                            #no genres found
+                            else:
+                                with open('sharedconfig.vdf', 'r') as F:
+                                    names = F.read()
+                                    # index after gameid and first '{'
+                                    firstidindex = names.rfind('"' + appid + '"') + len(appid) + 10
+                                    beginvdf = names[:firstidindex]
+                                    if names.find('{', firstidindex) - names.find('}', firstidindex) > 0:
+                                        lastinvdf = names[firstidindex:]
+                                        beginvdf += '\t\t\t\t\t\t"tags"\n\t\t\t\t\t\t{\n'
+                                        beginvdf += categ
+                                        beginvdf += '\t\t\t\t\t\t}\n'
+                                        names = beginvdf + lastinvdf
+                                    elif names.find('{', firstidindex) - names.find('}', firstidindex) < 0:
+                                        beginvdf = names[:names.find('}', firstidindex) - 6]
+                                        lastinvdf = names[names.find('}', firstidindex):]
+                                        beginvdf += categ
+                                        names = beginvdf + lastinvdf
+                                with open('sharedconfig.vdf', 'w') as F:
+                                    F.write(names)
+
+
                     if alive:
                         rightLabel.configure(text='finished')
                         alive = False
