@@ -134,13 +134,22 @@ def handle_start():
                         if not alive:
                             break
                         appid = str(each['appid'])
-                        response = resolve_redirects('http://store.steampowered.com/api/appdetails/?appids=' + appid + '&filters=genres', gameamount)
+                        #response = resolve_redirects('http://store.steampowered.com/api/appdetails/?appids=' + appid + '&filters=genres', gameamount)
+                        response = resolve_redirects('http://store.steampowered.com/api/appdetails/?appids=' + appid, gameamount)
                         html = response.read()
                         parsed_json2 = json.loads(html)
+
                         if str(parsed_json2[appid]['success']) == 'True':
-                            if str(parsed_json2[appid]['data']) != '[]':
+                            categ = ""
+                            if 'categories' in parsed_json2[appid]['data']:
+                                for description in parsed_json2[appid]['data']['categories']:
+                                    descript = str(description['description'])
+                                    id = str(description['id'])
+                                    if id == '18' or id == '39':
+                                        categ += '\t\t\t\t\t\t\t"' + id + '"\t\t"' + descript + '"\n'
+
+                            if 'genres' in parsed_json2[appid]['data']:
                                 with open('sharedconfig.vdf', 'r') as F:
-                                    #print appid
                                     names = F.read()
                                     # index after gameid and first '{'
                                     firstidindex = names.rfind('"' + appid + '"') + len(appid) + 10
@@ -152,6 +161,9 @@ def handle_start():
                                             descript = str(description['description'])
                                             id = str(description['id'])
                                             beginvdf += '\t\t\t\t\t\t\t"' + id + '"\t\t"' + descript + '"\n'
+                                            if len(categ) > 0:
+                                                beginvdf += categ
+                                                categ = ""
                                         beginvdf += '\t\t\t\t\t\t}\n'
                                         names = beginvdf + lastinvdf
                                     elif names.find('{', firstidindex) - names.find('}', firstidindex) < 0:
