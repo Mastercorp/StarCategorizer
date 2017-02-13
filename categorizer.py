@@ -5,6 +5,18 @@ import Tkinter
 import threading
 import os
 import shutil
+import sys
+
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 
 def resolve_redirects(url, gameamount):
@@ -231,7 +243,7 @@ def handle_start():
 
 
 root = Tkinter.Tk()
-root.iconbitmap('D:\WORKSPACE\PycharmProjects\Categorizer\logo.ico')
+root.iconbitmap(resource_path('logo.ico'))
 root.title('StarCategorizer')
 
 apiLabel = Tkinter.Label(root, text="Steam API Key")
