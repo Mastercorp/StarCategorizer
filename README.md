@@ -22,7 +22,7 @@ I could not manage to make Depressurizer work on my system, therefore i wrote my
 
 Download the StarCategorizer.exe file and put it in your \Steam\userdata\<Steam User ID>\7\remote\ folder. Start the exe, put in your Steam API key and steamID64 and press the 'Start' button. Wait until the programm is finished and start Steam. Enjoy your categories. You need an internet connection for the programm to work! (No python needed! I used pyinstall to pack everything you need into the exe file.) 
 
-If you don´t trust my exe, you can download the categorizer.py and start the programm from there. (You need to install python to use the categorizer.py)
+If you don´t trust my exe, you can download the categorizer.py and start the programm from there. Don´t forget to download the logo.ico as well, else it wont work ;) (You need to install python to use the categorizer.py)
 
 ## Buttons
 
