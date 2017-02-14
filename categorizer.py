@@ -151,6 +151,7 @@ def handle_start():
                         html = response.read()
                         parsed_json2 = json.loads(html)
 
+
                         if str(parsed_json2[appid]['success']) == 'True':
                             categ = ""
                             if 'categories' in parsed_json2[appid]['data']:
@@ -180,7 +181,7 @@ def handle_start():
                                         names = beginvdf + lastinvdf
                                     elif names.find('{', firstidindex) - names.find('}', firstidindex) < 0:
                                         beginvdf = names[:names.find('}', firstidindex) - 6]
-                                        lastinvdf = names[names.find('}', firstidindex):]
+                                        lastinvdf = names[names.find('}', firstidindex) + 1:]
                                         for description in parsed_json2[appid]['data']['genres']:
                                             descript = str(description['description'])
                                             id = str(description['id'])
@@ -188,7 +189,7 @@ def handle_start():
                                             if len(categ) > 0:
                                                 beginvdf += categ
                                                 categ = ""
-                                            names = beginvdf + lastinvdf
+                                            names = beginvdf + '\t\t\t\t\t\t}' + lastinvdf
                                 with open('sharedconfig.vdf', 'w') as F:
                                     F.write(names)
                             #no genres found
@@ -206,9 +207,9 @@ def handle_start():
                                         names = beginvdf + lastinvdf
                                     elif names.find('{', firstidindex) - names.find('}', firstidindex) < 0:
                                         beginvdf = names[:names.find('}', firstidindex) - 6]
-                                        lastinvdf = names[names.find('}', firstidindex):]
+                                        lastinvdf = names[names.find('}', firstidindex) + 1:]
                                         beginvdf += categ
-                                        names = beginvdf + lastinvdf
+                                        names = beginvdf + '\t\t\t\t\t\t}' + lastinvdf
                                 with open('sharedconfig.vdf', 'w') as F:
                                     F.write(names)
 
