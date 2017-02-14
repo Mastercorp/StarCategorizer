@@ -24,13 +24,12 @@ def resolve_redirects(url, gameamount):
         global gameTimer
         hdr = {'User-Agent': 'super happy category bot'}
         req = urllib2.Request(url, headers=hdr)
-        time.sleep(0.5)
+        time.sleep(1)
         rightLabel.configure(text='categorized: '+str(gameTimer) + ' / ' + gameamount)
         gameTimer += 1
         return urllib2.urlopen(req)
     except urllib2.HTTPError as e:
         if e.code != 0:
-            #print 'error 429'
             rightLabel.configure(text='HTTP error, wait 20 sec')
             time.sleep(20)
             gameTimer -= 1
@@ -74,31 +73,70 @@ def handle_start():
                     names = ""
                     first = False
                     second = False
+                    appfirstindex = 0
+                    applastindex = 0
                     with open('sharedconfig.vdf') as F:
+                        appscurlyfirst = 0
+                        appsopen = False
                         for idx, line in enumerate(F):
                             searchtags = str(line.lstrip())
                             searchtags = searchtags.rstrip()
-                            if searchtags == '"tags"':
-                                first = True
-                                continue
-                            if first and searchtags == '{':
-                                second = True
-                                continue
-                            if first and second and searchtags == '}':
-                                first = False
-                                second = False
-                                continue
-                            if searchtags == '':
-                                continue
-                            if searchtags == '"0"\t\t"favorite"':
-                                names += '\t\t\t\t\t\t"tags"\n'
-                                names += '\t\t\t\t\t\t{\n'
-                                names += '\t\t\t\t\t\t\t"0"\t\t"favorite"\n'
-                                names += '\t\t\t\t\t\t}\n'
-                                continue
-                            if first and second:
-                                continue
-                            names += line
+                            if searchtags == '{' and appsopen:
+                                if appscurlyfirst is 0:
+                                    appfirstindex = idx
+                                appscurlyfirst += 1
+                            elif searchtags == '}' and appsopen:
+                                appscurlyfirst -= 1
+                                if appscurlyfirst is 0:
+                                    applastindex = idx
+                                    appsopen = False
+                                    break
+
+                            elif searchtags.lower() == '"apps"' and not appsopen:
+                                appscurlyfirst = 0
+                                appsopen = True
+                        # jump to the beginning of the fail again, read doesnt reset the cursor
+                        if appfirstindex == applastindex:
+                            leftLabel.configure(text='')
+                            rightLabel.configure(text='No Apps object found in vdf, error')
+                            startButton.config(state='normal')
+                            cancelButton.config(state='disabled')
+                            break
+                        #to reset read()
+                        F.seek(0)
+                        for idx, line in enumerate(F):
+                            if idx == appfirstindex:
+                                names += line
+                                names += 'StarCategory1\n'
+                            elif appfirstindex < idx < applastindex:
+                                searchtags = str(line.lstrip())
+                                searchtags = searchtags.rstrip()
+                                if searchtags.lower() == '"tags"':
+                                    first = True
+                                    continue
+                                if first and searchtags == '{':
+                                    second = True
+                                    continue
+                                if first and second and searchtags == '}':
+                                    first = False
+                                    second = False
+                                    continue
+                                if searchtags == '':
+                                    continue
+                                if searchtags == '"0"\t\t"favorite"':
+                                    names += '\t\t\t\t\t\t"tags"\n'
+                                    names += '\t\t\t\t\t\t{\n'
+                                    names += '\t\t\t\t\t\t\t"0"\t\t"favorite"\n'
+                                    names += '\t\t\t\t\t\t}\n'
+                                    continue
+                                if first and second:
+                                    continue
+                                names += line
+                            elif idx == applastindex:
+                                names += 'StarCategory2\n'
+                                names += line
+                            else:
+                                names += line
 
                     steamapikey = str(e1.get())
                     steam64id = str(e2.get())
@@ -122,7 +160,8 @@ def handle_start():
                     html = response.read()
                     parsed_json = json.loads(html)
                     # apps + { + linebreakes and tabs
-                    firstappsindex = names.rfind('"apps"') + 13
+                    if(names.rfind('StarCategory1') > -1):
+                        firstappsindex = names.rfind('StarCategory1') + 14
 
                     beginvdf = names[:firstappsindex]
                     endvdf = names[firstappsindex:]
@@ -130,11 +169,11 @@ def handle_start():
                     gameamount = str(parsed_json['response']['game_count'])
                     leftLabel.configure(text=gameamount + " games found")
 
-
                     # add apps not present in current list
                     for idx, each in enumerate(parsed_json['response']['games']):
                         appid = str(each['appid'])
-                        if (names.find('"' + appid + '"')) == -1:
+
+                        if (names[names.find('StarCategory1'):names.find('StarCategory2')].find('"' + appid + '"')) == -1:
                             beginvdf += '\t\t\t\t\t"' + appid + '"\n'
                             beginvdf += '\t\t\t\t\t{\n'
                             beginvdf += '\t\t\t\t\t}\n'
@@ -142,15 +181,20 @@ def handle_start():
                     with open('sharedconfig.vdf', 'w') as F:
                         F.write(beginvdf + endvdf)
 
+                    with open('sharedconfig.vdf', 'r') as F:
+                        names = F.read()
+                        namebetweenapps = names[names.rfind('StarCategory1') + 14:names.rfind('StarCategory2')]
+
                     for idx, each in enumerate(parsed_json['response']['games']):
                         if not alive:
                             break
                         appid = str(each['appid'])
                         #response = resolve_redirects('http://store.steampowered.com/api/appdetails/?appids=' + appid + '&filters=genres', gameamount)
+                        # change language of api call to german for example
+                        #http: // store.steampowered.com / api / appdetails /?l = german & appids = 12140
                         response = resolve_redirects('http://store.steampowered.com/api/appdetails/?appids=' + appid, gameamount)
                         html = response.read()
                         parsed_json2 = json.loads(html)
-
 
                         if str(parsed_json2[appid]['success']) == 'True':
                             categ = ""
@@ -162,59 +206,58 @@ def handle_start():
                                         categ += '\t\t\t\t\t\t\t"' + id + '"\t\t"' + descript + '"\n'
 
                             if 'genres' in parsed_json2[appid]['data']:
-                                with open('sharedconfig.vdf', 'r') as F:
-                                    names = F.read()
-                                    # index after gameid and first '{'
-                                    firstidindex = names.rfind('"' + appid + '"') + len(appid) + 10
-                                    beginvdf = names[:firstidindex]
-                                    if names.find('{', firstidindex) - names.find('}', firstidindex) > 0:
-                                        lastinvdf = names[firstidindex:]
-                                        beginvdf += '\t\t\t\t\t\t"tags"\n\t\t\t\t\t\t{\n'
-                                        for description in parsed_json2[appid]['data']['genres']:
-                                            descript = str(description['description'])
-                                            id = str(description['id'])
-                                            beginvdf += '\t\t\t\t\t\t\t"' + id + '"\t\t"' + descript + '"\n'
-                                            if len(categ) > 0:
-                                                beginvdf += categ
-                                                categ = ""
-                                        beginvdf += '\t\t\t\t\t\t}\n'
-                                        names = beginvdf + lastinvdf
-                                    elif names.find('{', firstidindex) - names.find('}', firstidindex) < 0:
-                                        beginvdf = names[:names.find('}', firstidindex) - 6]
-                                        lastinvdf = names[names.find('}', firstidindex) + 1:]
-                                        for description in parsed_json2[appid]['data']['genres']:
-                                            descript = str(description['description'])
-                                            id = str(description['id'])
-                                            beginvdf += '\t\t\t\t\t\t\t"' + id + '"\t\t"' + descript + '"\n'
-                                            if len(categ) > 0:
-                                                beginvdf += categ
-                                                categ = ""
-                                            names = beginvdf + '\t\t\t\t\t\t}' + lastinvdf
-                                with open('sharedconfig.vdf', 'w') as F:
-                                    F.write(names)
-                            #no genres found
-                            else:
-                                with open('sharedconfig.vdf', 'r') as F:
-                                    names = F.read()
-                                    # index after gameid and first '{'
-                                    firstidindex = names.rfind('"' + appid + '"') + len(appid) + 10
-                                    beginvdf = names[:firstidindex]
-                                    if names.find('{', firstidindex) - names.find('}', firstidindex) > 0:
-                                        lastinvdf = names[firstidindex:]
-                                        beginvdf += '\t\t\t\t\t\t"tags"\n\t\t\t\t\t\t{\n'
-                                        beginvdf += categ
-                                        beginvdf += '\t\t\t\t\t\t}\n'
-                                        names = beginvdf + lastinvdf
-                                    elif names.find('{', firstidindex) - names.find('}', firstidindex) < 0:
-                                        beginvdf = names[:names.find('}', firstidindex) - 6]
-                                        lastinvdf = names[names.find('}', firstidindex) + 1:]
-                                        beginvdf += categ
-                                        names = beginvdf + '\t\t\t\t\t\t}' + lastinvdf
-                                with open('sharedconfig.vdf', 'w') as F:
-                                    F.write(names)
 
+                                # index after gameid and first '{'
+
+                                firstidindex = namebetweenapps.rfind('"' + appid + '"') + len(appid) + 10
+                                beginvdf = namebetweenapps[:firstidindex]
+                                if namebetweenapps.find('{', firstidindex) - namebetweenapps.find('}', firstidindex) > 0:
+                                    lastinvdf = namebetweenapps[firstidindex:]
+                                    beginvdf += '\t\t\t\t\t\t"tags"\n\t\t\t\t\t\t{\n'
+                                    for description in parsed_json2[appid]['data']['genres']:
+                                        descript = str(description['description'])
+                                        id = str(description['id'])
+                                        beginvdf += '\t\t\t\t\t\t\t"' + id + '"\t\t"' + descript + '"\n'
+                                        if len(categ) > 0:
+                                            beginvdf += categ
+                                            categ = ""
+                                    beginvdf += '\t\t\t\t\t\t}\n'
+                                    namebetweenapps = beginvdf + lastinvdf
+                                elif namebetweenapps.find('{', firstidindex) - namebetweenapps.find('}', firstidindex) < 0:
+                                    beginvdf = namebetweenapps[:namebetweenapps.find('}', firstidindex) - 6]
+                                    lastinvdf = namebetweenapps[namebetweenapps.find('}', firstidindex) + 1:]
+                                    for description in parsed_json2[appid]['data']['genres']:
+                                        descript = str(description['description'])
+                                        id = str(description['id'])
+                                        beginvdf += '\t\t\t\t\t\t\t"' + id + '"\t\t"' + descript + '"\n'
+                                        if len(categ) > 0:
+                                            beginvdf += categ
+                                            categ = ""
+                                            namebetweenapps = beginvdf + '\t\t\t\t\t\t}' + lastinvdf
+
+                        #no genres found
+                            else:
+
+                                # index after gameid and first '{'
+                                firstidindex = namebetweenapps.rfind('"' + appid + '"') + len(appid) + 10
+                                beginvdf = namebetweenapps[:firstidindex]
+                                if namebetweenapps.find('{', firstidindex) - namebetweenapps.find('}', firstidindex) > 0:
+                                    lastinvdf = namebetweenapps[firstidindex:]
+                                    beginvdf += '\t\t\t\t\t\t"tags"\n\t\t\t\t\t\t{\n'
+                                    beginvdf += categ
+                                    beginvdf += '\t\t\t\t\t\t}\n'
+                                    namebetweenapps = beginvdf + lastinvdf
+                                elif namebetweenapps.find('{', firstidindex) - namebetweenapps.find('}', firstidindex) < 0:
+                                    beginvdf = namebetweenapps[:namebetweenapps.find('}', firstidindex) - 6]
+                                    lastinvdf = namebetweenapps[namebetweenapps.find('}', firstidindex) + 1:]
+                                    beginvdf += categ
+                                    namebetweenapps = beginvdf + '\t\t\t\t\t\t}' + lastinvdf
 
                     if alive:
+                        with open('sharedconfig.vdf', 'w') as F:
+                            F.write(names[:names.rfind('StarCategory1')] + namebetweenapps + names[names.rfind(
+                                'StarCategory2') + 14:])
+
                         rightLabel.configure(text='finished')
                         alive = False
                     else:
@@ -223,7 +266,6 @@ def handle_start():
                             backup = F.read()
                             with open('sharedconfig.vdf', 'w') as B:
                                 B.write(backup)
-
 
                         alive = False
                 else:
@@ -241,7 +283,6 @@ def handle_start():
     t = threading.Thread(target=callback)
     t.daemon = True
     t.start()
-
 
 root = Tkinter.Tk()
 root.iconbitmap(resource_path('logo.ico'))
