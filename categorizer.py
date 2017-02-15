@@ -213,7 +213,7 @@ def handle_start():
 
                                 firstidindex = namebetweenapps.rfind('"' + appid + '"') + len(appid) + 10
                                 beginvdf = namebetweenapps[:firstidindex]
-                                if namebetweenapps.find('{', firstidindex) != -1 and namebetweenapps.find('{', firstidindex) - namebetweenapps.find('}', firstidindex) > 0:
+                                if namebetweenapps.find('{', firstidindex) == -1 or namebetweenapps.find('{', firstidindex) - namebetweenapps.find('}', firstidindex) > 0:
                                     lastinvdf = namebetweenapps[firstidindex:]
                                     beginvdf += '\t\t\t\t\t\t"tags"\n\t\t\t\t\t\t{\n'
                                     for description in parsed_json2[appid]['data']['genres']:
