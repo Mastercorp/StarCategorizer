@@ -196,14 +196,16 @@ def handle_start():
                         html = response.read()
                         parsed_json2 = json.loads(html)
 
-                        if str(parsed_json2[appid]['success']) == 'True':
+                        if parsed_json2[appid]['success']:
                             categ = ""
+                            idnumber = 1
                             if 'categories' in parsed_json2[appid]['data']:
                                 for description in parsed_json2[appid]['data']['categories']:
-                                    descript = str(description['description'])
+                                    descript = description['description'].encode('utf-8')
                                     id = str(description['id'])
                                     if id == '18' or id == '39':
-                                        categ += '\t\t\t\t\t\t\t"' + id + '"\t\t"' + descript + '"\n'
+                                        categ += '\t\t\t\t\t\t\t"' + str(idnumber) + '"\t\t"' + descript + '"\n'
+                                        idnumber += 1
 
                             if 'genres' in parsed_json2[appid]['data']:
 
@@ -211,29 +213,31 @@ def handle_start():
 
                                 firstidindex = namebetweenapps.rfind('"' + appid + '"') + len(appid) + 10
                                 beginvdf = namebetweenapps[:firstidindex]
-                                if namebetweenapps.find('{', firstidindex) - namebetweenapps.find('}', firstidindex) > 0:
+                                if namebetweenapps.find('{', firstidindex) != -1 and namebetweenapps.find('{', firstidindex) - namebetweenapps.find('}', firstidindex) > 0:
                                     lastinvdf = namebetweenapps[firstidindex:]
                                     beginvdf += '\t\t\t\t\t\t"tags"\n\t\t\t\t\t\t{\n'
                                     for description in parsed_json2[appid]['data']['genres']:
-                                        descript = str(description['description'])
-                                        id = str(description['id'])
-                                        beginvdf += '\t\t\t\t\t\t\t"' + id + '"\t\t"' + descript + '"\n'
+                                        descript = description['description'].encode('utf-8')
+                                        #id = str(description['id'])
                                         if len(categ) > 0:
                                             beginvdf += categ
                                             categ = ""
+                                        beginvdf += '\t\t\t\t\t\t\t"' + str(idnumber) + '"\t\t"' + descript + '"\n'
+                                        idnumber += 1
                                     beginvdf += '\t\t\t\t\t\t}\n'
                                     namebetweenapps = beginvdf + lastinvdf
                                 elif namebetweenapps.find('{', firstidindex) - namebetweenapps.find('}', firstidindex) < 0:
                                     beginvdf = namebetweenapps[:namebetweenapps.find('}', firstidindex) - 6]
                                     lastinvdf = namebetweenapps[namebetweenapps.find('}', firstidindex) + 1:]
                                     for description in parsed_json2[appid]['data']['genres']:
-                                        descript = str(description['description'])
-                                        id = str(description['id'])
-                                        beginvdf += '\t\t\t\t\t\t\t"' + id + '"\t\t"' + descript + '"\n'
+                                        descript = description['description'].encode('utf-8')
+                                        #id = str(description['id'])
                                         if len(categ) > 0:
                                             beginvdf += categ
                                             categ = ""
-                                            namebetweenapps = beginvdf + '\t\t\t\t\t\t}' + lastinvdf
+                                        beginvdf += '\t\t\t\t\t\t\t"' + str(idnumber) + '"\t\t"' + descript + '"\n'
+                                        idnumber += 1
+                                    namebetweenapps = beginvdf + '\t\t\t\t\t\t}' + lastinvdf
 
                         #no genres found
                             else:
@@ -293,7 +297,7 @@ apiLabel.grid(row=0)
 
 idLabel = Tkinter.Label(root, text="steamID64")
 idLabel.grid(row=1)
-leftLabel = Tkinter.Label(root, text="")
+leftLabel = Tkinter.Label(root, text="Version 1.1.1")
 leftLabel.grid(row=2, column=0)
 rightLabel = Tkinter.Label(root, text="")
 rightLabel.grid(row=2, column=1)
