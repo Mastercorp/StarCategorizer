@@ -1,0 +1,30 @@
+1		Multi-player
+8		Valve Anti-Cheat enabled
+2		Single-player
+22		Steam Achievements
+29		Steam Trading Cards
+13		Captions available
+18		Partial Controller Support
+23		Steam Cloud
+16		Includes Source SDK
+27		Cross-Platform Multiplayer
+15		Stats
+14		Commentary available
+19		Mods
+17		Includes level editor
+9		Co-op
+30		Steam Workshop
+21		Downloadable Content
+24		Shared/Split Screen
+28		Full controller support
+25		Steam Leaderboards
+36		Online Multi-Player
+38		Online Co-op
+39		Local Co-op
+10		Game demo
+20		MMO
+32		Steam Turn Notifications
+31		VR Support
+35		In-App Purchases
+37		Local Multi-Player
+33		Native Steam Controller Support
