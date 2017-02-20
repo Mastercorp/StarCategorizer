@@ -1,14 +1,15 @@
 
 
 
-## StarCategorizer
+## StarCategorizer 2.0
 
-StarCategorizer autocategorizes your games in your Steam library. The games' Steam store genre is used as category ( + Partial Controller Support and Local Co-OP categorie). Your old categories are deleted, only your Favorites are saved. A backup is made from your old config file (called sharedconfig.vdf.bak)
+StarCategorizer autocategorizes your games in your Steam library. The games' Steam store genre is used as category ( + steam categories). Your old categories are deleted, only your Favorites are saved. A backup is made from your old config file (called sharedconfig.vdf.bak)
 You don't need to set your profile status to public for this programm to work ;)
 
 
 ## What you need
 
+If your profile is public you only need your custom url!  
 Steam API key: you can get it here: https://steamcommunity.com/dev/apikey  
 (if you do not have a domain, enter your e-mail)  
 steam64ID: search with your custom url name at https://steamid.io/  
@@ -20,15 +21,18 @@ I could not manage to make Depressurizer work on my system, therefore i wrote my
 
 ## Installation
 
-Download the StarCategorizer.exe file and put it in your \Steam\userdata\<Steam User ID>\7\remote\ folder. Start the exe, put in your Steam API key and steamID64 and press the 'Start' button. Wait until the programm is finished and start Steam. Enjoy your categories. You need an internet connection for the programm to work! (No python needed! I used pyinstall to pack everything you need into the exe file.) 
+Download the StarCategorizer.exe file and put it in your \Steam\userdata\<Steam User ID>\7\remote\ folder. Start the exe, put in your Steam API key and steamID64 and press the 'Start' button or just use the checkbox if your profilestatus is set to public and enter your custom url. Wait until the programm is finished and start Steam. Enjoy your categories. You need an internet connection for the programm to work! (No python needed! I used pyinstall to pack everything you need into the exe file.) 
 
-If you don´t trust my exe, you can download the categorizer.py and start the programm from there. Don´t forget to download the logo.ico as well, else it wont work ;) (You need to install python to use the categorizer.py)
+If you don´t trust my exe, you can download the categorizer.py and start the programm from there. Don´t forget to download the logo.ico as well, else it wont work ;) (You need to install python to use the StarCategorizer.py)
 
 ## Buttons
 
 Quit closes the app.  
 Start starts the process of categorizing your games and makes a backup of your sharedconfig.vdf file. (If a sharedconfig.vdf.bak exists, sharedconfig.vdf.bak does't get overwritten.If you want to make a new backup you have to delete sharedconfig.vdf.bak first)
 Cancel stops categorizing your games and restores sharedconfig.vdf(everything in sharedconfig.vdf.bak is coppied back to sharedconfig.vdf)  
+public profile: if your Steam profile status is set to public you do not need a steam api key anymore! Just enter your custom url and you are ready!  
+Settings : You can choose which categories from steam you want to add to your games. ( Shop genres can not be changed and are assigned automatically )  
+
 
 
 ## License
