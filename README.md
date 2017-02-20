@@ -9,7 +9,7 @@ You don't need to set your profile status to public for this programm to work ;)
 
 ## What you need
 
-If your profile is public you only need your custom url!  
+If your profile is public you only need your custom url! ( you can find it with https://steamid.io/)
 Steam API key: you can get it here: https://steamcommunity.com/dev/apikey  
 (if you do not have a domain, enter your e-mail)  
 steam64ID: search with your custom url name at https://steamid.io/  
