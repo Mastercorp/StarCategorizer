@@ -373,9 +373,10 @@ class Controller(object):
                                 for description in jsongameinfo[appid]['data']['categories']:
                                     categname = description['description'].encode('utf-8')
                                     catid = description['id']
-                                    if self.steamcategories[catid][1].get():
-                                        gamecateg += '\t\t\t\t\t\t\t"' + str(idintag) + '"\t\t"' + categname + '"\n'
-                                        idintag += 1
+                                    if catid in self.steamcategories.keys():
+                                        if self.steamcategories[catid][1].get():
+                                            gamecateg += '\t\t\t\t\t\t\t"' + str(idintag) + '"\t\t"' + categname + '"\n'
+                                            idintag += 1
 
                             if 'genres' in jsongameinfo[appid]['data']:
 
@@ -458,11 +459,9 @@ class Controller(object):
                 self.alive = False
                 return
 
-
         t = threading.Thread(target=callback)
         t.daemon = True
         t.start()
-
 
     def button_cancel(self):
         self.view.startButton.config(state='normal')
