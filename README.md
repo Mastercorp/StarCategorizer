@@ -11,7 +11,7 @@ You can join the Steamgroup here: http://steamcommunity.com/groups/StarCategoriz
 
 ## What you need
 
-If your profile is public you only need your custom url! ( you can find it with https://steamid.io/)
+If your profile is public you only need your custom url!( you can find it with https://steamid.io/ , if you dont have a custom url you need yout steamID64, which you find on the website too.)
 Steam API key: you can get it here: https://steamcommunity.com/dev/apikey  
 (if you do not have a domain, enter your e-mail)  
 steam64ID: search with your custom url name at https://steamid.io/  
@@ -19,11 +19,11 @@ or read here : https://steamcommunity.com/discussions/forum/1/364039785160857002
 
 ## Motivation
 
-I could not manage to make Depressurizer work on my system, therefore i wrote my own programm.  https://github.com/rallion/depressurizer
+I could not manage to make Depressurizer work on my system, therefore i wrote my own programm. You can find Depressurizer here:  https://github.com/rallion/depressurizer
 
 ## Installation
 
-Download the StarCategorizer.exe file and put it in your \Steam\userdata\<Steam User ID>\7\remote\ folder. Start the exe, put in your Steam API key and steamID64 and press the 'Start' button or just use the checkbox if your profilestatus is set to public and enter your custom url. Wait until the programm is finished and start Steam. Enjoy your categories. You need an internet connection for the programm to work! (No python needed! I used pyinstall to pack everything you need into the exe file.) 
+Download the StarCategorizer.exe file and put it in your \Steam\userdata\<Steam User ID>\7\remote\ folder. Start the exe, put in your Steam API key and steamID64 and press the 'Start' button or just use the checkbox if your profilestatus is set to public and enter your custom url. Wait until the programm is finished and start Steam. Enjoy your categories. You need an internet connection for the programm to work! (No python needed! I used pyinstall to pack everything you need into the exe file.) As an alternative, you can copy your sharedconfig.vdf file in the same folder as the StarCategorizer.exe and after the programm is finished you only need to copy the new file back.
 
 If you don´t trust my exe, you can download the categorizer.py and start the programm from there. Don´t forget to download the logo.ico as well, else it wont work ;) (You need to install python to use the StarCategorizer.py)
 
