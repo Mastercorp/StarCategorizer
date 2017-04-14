@@ -1,5 +1,5 @@
 import pytest
-import StarCategorizer as sc
+from core import StarCategorizer as sc
 
 
 def test_load_file():
