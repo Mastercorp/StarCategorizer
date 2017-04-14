@@ -3,7 +3,7 @@ import StarCategorizer as sc
 
 
 def test_load_file():
-    assert sc.Model.load_file('testfile.txt') == 'this is a testfile'
+    assert sc.Model.load_file('testfile.txt') == 'this is a testfile\n'
     assert not sc.Model.load_file('not_here.txt')
 
 
