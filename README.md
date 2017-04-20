@@ -16,6 +16,7 @@ Steam API key: you can get it here: https://steamcommunity.com/dev/apikey
 (if you do not have a domain, enter your e-mail)  
 steam64ID: search with your custom url name at https://steamid.io/  
 or read here : https://steamcommunity.com/discussions/forum/1/364039785160857002/  
+If you use the python code you need python 2.7
 
 ## Motivation
 
