@@ -36,7 +36,13 @@ Cancel stops categorizing your games and restores sharedconfig.vdf(everything in
 public profile: if your Steam profile status is set to public you do not need a steam api key anymore! Just enter your custom url and you are ready!  
 Settings : You can choose which categories from steam you want to add to your games. ( Shop genres can not be changed and are assigned automatically )  
 
-
+## Donate
+Bitcoin: 1NE7tpCaHXMG3VP2oQrx1L53MEPnAp39xM  
+Litecoin: LLCmNPWBt8TxnNuaTWfyDdajXM5rZPuzsT  
+Bytecoin: 23PcpRoPL24U3jnhgH38Za7ZLAhrpXNQUA7NhW2nyJqJ54VCP7M6M1VhP76WAxed7J9XCuzbnjZqz1MQUc6MPJjTUDaZuiS  
+Reddcoin: Rsjofwt2TNu6Gf6eQdzyUhJe2J6vLsKoBq  
+Dogecoin: DM13fiivexaZf35HTQ7AKBFLxNTHhJXu1c  
+Vertcoin: VbKfmr7B352WEPs3Qi7VeC4WviGS1jGQvd  
 
 ## License
 
