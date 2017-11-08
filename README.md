@@ -13,7 +13,7 @@ You can join the Steamgroup here: http://steamcommunity.com/groups/StarCategoriz
 
 ## What you need
 
-If your profile is public you only need your custom url!( you can find it with https://steamid.io/ , if you dont have a custom url you need yout steamID64, which you find on the website too.)
+If your profile is public you only need your custom url!( you can find it with https://steamid.io/ , if you dont have a custom url you need your steamID64, which you will find on the website too.)
 Steam API key: you can get it here: https://steamcommunity.com/dev/apikey  
 (if you do not have a domain, enter your e-mail)  
 steam64ID: search with your custom url name at https://steamid.io/  
