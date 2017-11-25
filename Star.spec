@@ -7,7 +7,7 @@ added_files = [
          ]
 
 a = Analysis(['StarCategorizer.py'],
-             pathex=['E:\\UseYourExtractionDirectory\\StarCategorizer'],
+             pathex=['E:\\CustomPath\\StarCategorizer'],
              binaries=[],
              datas=added_files,
              hiddenimports=[],
@@ -29,4 +29,4 @@ exe = EXE(pyz,
           strip=False,
           upx=True,
           runtime_tmpdir=None,
-          console=False)
+          console=False , icon='logo.ico')
