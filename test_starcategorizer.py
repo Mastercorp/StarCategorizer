@@ -1,5 +1,4 @@
-import pytest
-import StarCategorizer as sc
+import Model as sc
 
 
 def test_load_file():
