@@ -8,10 +8,12 @@ You don't need to set your profile status to public for this programm to work ;)
 The language of the categories depends on your steam website settings. ( https://store.steampowered.com/api/appdetails/?appids=220 you can check it here. Just click the link and see which language the text is written in. )  
 You can join the Steamgroup here: http://steamcommunity.com/groups/StarCategorizer
 
+![alt text](StarCategorizer2.png)
+
 
 ## What you need
 
-If your profile is public you only need your custom url!( you can find it with https://steamid.io/ , if you dont have a custom url you need yout steamID64, which you find on the website too.)
+If your profile is public you only need your custom url!( you can find it with https://steamid.io/ , if you dont have a custom url you need your steamID64, which you will find on the website too.)
 Steam API key: you can get it here: https://steamcommunity.com/dev/apikey  
 (if you do not have a domain, enter your e-mail)  
 steam64ID: search with your custom url name at https://steamid.io/  
@@ -36,7 +38,13 @@ Cancel stops categorizing your games and restores sharedconfig.vdf(everything in
 public profile: if your Steam profile status is set to public you do not need a steam api key anymore! Just enter your custom url and you are ready!  
 Settings : You can choose which categories from steam you want to add to your games. ( Shop genres can not be changed and are assigned automatically )  
 
-
+## Donate
+Bitcoin: 1NE7tpCaHXMG3VP2oQrx1L53MEPnAp39xM  
+Litecoin: LLCmNPWBt8TxnNuaTWfyDdajXM5rZPuzsT  
+Bytecoin: 23PcpRoPL24U3jnhgH38Za7ZLAhrpXNQUA7NhW2nyJqJ54VCP7M6M1VhP76WAxed7J9XCuzbnjZqz1MQUc6MPJjTUDaZuiS  
+Reddcoin: Rsjofwt2TNu6Gf6eQdzyUhJe2J6vLsKoBq  
+Dogecoin: DM13fiivexaZf35HTQ7AKBFLxNTHhJXu1c  
+Vertcoin: VbKfmr7B352WEPs3Qi7VeC4WviGS1jGQvd  
 
 ## License
 
