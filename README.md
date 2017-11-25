@@ -1,4 +1,4 @@
-
+![travis build](https://travis-ci.org/Mastercorp/StarCategorizer.svg?branch=master)
 
 
 ## StarCategorizer 2.1
