@@ -1,7 +1,7 @@
 ![travis build](https://travis-ci.org/Mastercorp/StarCategorizer.svg?branch=master)
 
 
-## StarCategorizer 2.1
+## StarCategorizer 2.1.1
 
 StarCategorizer autocategorizes your games in your Steam library. The games' Steam store genre is used as category ( + steam categories which you can choose on your own!). Your old categories are deleted, only your Favorites are saved. A backup is made from your old config file (called sharedconfig.vdf.bak)
 You don't need to set your profile status to public for this programm to work ;)
