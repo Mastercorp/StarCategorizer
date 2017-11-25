@@ -6,15 +6,15 @@ import shutil
 
 
 class Model(object):
-
-    def resolve_redirects(self, url):
+    @staticmethod
+    def resolve_redirects(url):
         try:
             return urllib2.urlopen(url), urllib2.urlopen(url).getcode()
         except urllib2.HTTPError as e:
             if e.code == 429:
                 time.sleep(20)
 
-                return self.resolve_redirects(url)
+                return Model.resolve_redirects(url)
 
             else:
                 return False, e.code
