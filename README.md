@@ -29,7 +29,7 @@ I could not manage to make Depressurizer work on my system, therefore i wrote my
 
 Download the StarCategorizer.exe file and put it in your \Steam\userdata\<Steam User ID>\7\remote\ folder. Start the exe, put in your Steam API key and steamID64 and press the 'Start' button or just use the checkbox if your profilestatus is set to public and enter your custom url. Wait until the programm is finished and start Steam. Enjoy your categories. You need an internet connection for the programm to work! (No python needed! I used pyinstall to pack everything you need into the exe file.) As an alternative, you can copy your sharedconfig.vdf file in the same folder as the StarCategorizer.exe and after the programm is finished you only need to copy the new file back.
 
-If you don´t trust my exe, you can download the categorizer.py and start the programm from there. Don´t forget to download the logo.ico as well, else it wont work ;) (You need to install python to use the StarCategorizer.py)  
+If you don´t trust my exe, you can download the StarCategorizer.py, View.py and Model.py and start the programm from there. Don´t forget to download the logo.ico as well, else it wont work ;) (You need to install python to use the StarCategorizer.py)  
 You can create your own exe with pyinstaller. To create the exe install pyinstaller and use my Star.spec file. You just have to include the right folder in the spec file at pathex.
 
 ## Buttons
