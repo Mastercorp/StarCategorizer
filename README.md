@@ -3,7 +3,7 @@
 
 ## StarCategorizer 2.1.1
 
-StarCategorizer autocategorizes your games in your Steam library. The games' Steam store genre is used as category ( + steam categories which you can choose on your own!). Your old categories are deleted, only your Favorites are saved. A backup is made from your old config file (called sharedconfig.vdf.bak)
+StarCategorizer autocategorizes your games in your Steam library. You do not need to set your profile public! The games' Steam store genre is used as category ( + steam categories which you can choose on your own!). Your old categories are deleted, only your Favorites are saved. A backup is made from your old config file (called sharedconfig.vdf.bak)
 You don't need to set your profile status to public for this programm to work ;)
 The language of the categories depends on your steam website settings. ( https://store.steampowered.com/api/appdetails/?appids=220 you can check it here. Just click the link and see which language the text is written in. )  
 You can join the Steamgroup here: http://steamcommunity.com/groups/StarCategorizer
