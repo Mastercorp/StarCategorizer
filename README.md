@@ -44,7 +44,7 @@ Settings : You can choose which categories from steam you want to add to your ga
 ## Donate
 Bitcoin: 1NE7tpCaHXMG3VP2oQrx1L53MEPnAp39xM  
 Litecoin: LLCmNPWBt8TxnNuaTWfyDdajXM5rZPuzsT  
-Bytecoin: 23PcpRoPL24U3jnhgH38Za7ZLAhrpXNQUA7NhW2nyJqJ54VCP7M6M1VhP76WAxed7J9XCuzbnjZqz1MQUc6MPJjTUDaZuiS  
+Verge   : DN5QsxVaFLykVykGNFqRdGFvi5zg2zz3Rq   
 Reddcoin: Rsjofwt2TNu6Gf6eQdzyUhJe2J6vLsKoBq  
 Dogecoin: DM13fiivexaZf35HTQ7AKBFLxNTHhJXu1c  
 Vertcoin: VbKfmr7B352WEPs3Qi7VeC4WviGS1jGQvd  
