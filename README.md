@@ -42,7 +42,7 @@ public profile: if your Steam profile status is set to public you do not need a 
 Settings : You can choose which categories from steam you want to add to your games. ( Shop genres can not be changed and are assigned automatically )  
 
 ## Donate
-Bitcoin: 1NE7tpCaHXMG3VP2oQrx1L53MEPnAp39xM  
+Bitcoin: 17C7sAiGw7a7g7wZx3eVbe5Vuqs35EJhSL    
 Litecoin: LLCmNPWBt8TxnNuaTWfyDdajXM5rZPuzsT  
 Verge   : DN5QsxVaFLykVykGNFqRdGFvi5zg2zz3Rq   
 Reddcoin: Rsjofwt2TNu6Gf6eQdzyUhJe2J6vLsKoBq  
