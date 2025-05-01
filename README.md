@@ -1,5 +1,7 @@
 ![travis build](https://travis-ci.org/Mastercorp/StarCategorizer.svg?branch=master)
+## discontinued / outdated
 
+Steam added categories/collections, which make this software obsolete.
 
 ## StarCategorizer 2.1.1
 
